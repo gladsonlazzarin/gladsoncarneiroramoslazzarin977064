@@ -1,5 +1,6 @@
 package com.gladson.seletivo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -40,6 +41,7 @@ public class Arquivo implements Serializable {
     @Column(name = "tamanho_bytes")
     private Long tamanhoBytes;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "album_id")
     private Album album;
