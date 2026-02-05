@@ -4,6 +4,7 @@ import com.gladson.seletivo.dto.ArtistaCriarDTO;
 import com.gladson.seletivo.model.Artista;
 import com.gladson.seletivo.model.projecoes.ArtistaView;
 import com.gladson.seletivo.service.ArtistaService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -23,6 +24,7 @@ public class ArtistaControllerV1 {
     ArtistaService artistaService;
 
     @PostMapping
+    @Operation(description = "Há apenas dois tipos de Artista possíveis, CANTOR ou BANDA")
     public ResponseEntity<Artista> criar(@Valid @RequestBody ArtistaCriarDTO artistaCriarDTO){
         return ResponseEntity.status(HttpStatus.CREATED).body(artistaService.criar(artistaCriarDTO));
     }

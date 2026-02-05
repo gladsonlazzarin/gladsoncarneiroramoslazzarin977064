@@ -1,0 +1,2 @@
+ALTER TABLE tb_artista
+ADD COLUMN tipo_artista VARCHAR(50) NOT NULL;

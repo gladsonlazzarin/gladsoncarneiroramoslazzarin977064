@@ -2,6 +2,7 @@ package com.gladson.seletivo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gladson.seletivo.dto.ArtistaCriarDTO;
+import com.gladson.seletivo.model.enuns.TipoArtistaEnum;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -21,6 +22,10 @@ public class Artista implements Serializable {
     @Column(name = "nome_artista", nullable = false)
     private String nomeArtista;
 
+    @Enumerated(EnumType.STRING) // Salva o enum como STRING no banco
+    @Column(name = "tipo_artista", nullable = false)
+    private TipoArtistaEnum tipo;
+
     @JsonIgnore
     @ManyToMany(mappedBy = "artistas", fetch = FetchType.LAZY)
     private List<Album> albums;
@@ -28,14 +33,16 @@ public class Artista implements Serializable {
     public Artista() {
     }
 
-    public Artista(Long id, String nomeArtista, List<Album> albums) {
+    public Artista(Long id, String nomeArtista, TipoArtistaEnum tipo, List<Album> albums) {
         this.id = id;
         this.nomeArtista = nomeArtista;
+        this.tipo = tipo;
         this.albums = albums;
     }
 
     public Artista(ArtistaCriarDTO artistaCriarDTO) {
         this.nomeArtista = artistaCriarDTO.nomeArtista();
+        this.tipo = artistaCriarDTO.tipo();
     }
 
     public Long getId() {
@@ -52,6 +59,14 @@ public class Artista implements Serializable {
 
     public void setNomeArtista(String nomeArtista) {
         this.nomeArtista = nomeArtista;
+    }
+
+    public TipoArtistaEnum getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoArtistaEnum tipo) {
+        this.tipo = tipo;
     }
 
     public List<Album> getAlbums() {
