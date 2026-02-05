@@ -16,7 +16,7 @@ import java.util.Optional;
 public class ArtistaService {
 
     @Autowired
-    ArtistaRepository artistaRepository;
+    private ArtistaRepository artistaRepository;
 
     public Artista criar(ArtistaCriarDTO artistaCriarDTO){
         return artistaRepository.save(new Artista(artistaCriarDTO));

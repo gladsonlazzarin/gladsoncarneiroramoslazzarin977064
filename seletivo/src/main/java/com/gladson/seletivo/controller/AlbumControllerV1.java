@@ -67,4 +67,8 @@ public class AlbumControllerV1 {
         return ResponseEntity.ok(albumService.atualizanome(idAlbum, albumCriarDTO));
     }
 
+    @PutMapping("/album/{idAlbum}/artista/{idArtista}")
+    public ResponseEntity<AlbumView> adicionarArtista(@PathVariable Long idAlbum, @PathVariable Long idArtista){
+        return ResponseEntity.ok(albumService.adicionarArtista(idAlbum, idArtista));
+    }
 }

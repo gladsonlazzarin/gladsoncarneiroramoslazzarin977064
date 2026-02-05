@@ -14,4 +14,6 @@ public interface AlbumRepository extends JpaRepository<Album, Long> {
     Page<AlbumView> findAllByOrderByNomeAlbumDesc(Pageable pageable);
 
     Page<AlbumView> findByNomeAlbumContainingIgnoreCase(String nome, Pageable pageable);
+
+    AlbumView findById(Long idAlbum, Class<AlbumView> albumViewClass);
 }
