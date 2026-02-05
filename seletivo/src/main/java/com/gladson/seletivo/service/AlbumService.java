@@ -4,6 +4,7 @@ import com.gladson.seletivo.dto.AlbumCriarDTO;
 import com.gladson.seletivo.model.Album;
 import com.gladson.seletivo.model.Arquivo;
 import com.gladson.seletivo.model.Artista;
+import com.gladson.seletivo.model.enuns.TipoArtistaEnum;
 import com.gladson.seletivo.model.projecoes.AlbumView;
 import com.gladson.seletivo.respository.AlbumRepository;
 import com.gladson.seletivo.respository.ArquivoRepository;
@@ -129,5 +130,9 @@ public class AlbumService {
         );
 
         return url;
+    }
+
+    public Page<AlbumView> listarAlbunsPorTipoArtista(TipoArtistaEnum tipoArtistaEnum, Pageable pageable) {
+        return albumRepository.findDistinctByArtistas_Tipo(tipoArtistaEnum, pageable);
     }
 }

@@ -2,6 +2,7 @@ package com.gladson.seletivo.controller;
 
 import com.gladson.seletivo.dto.AlbumCriarDTO;
 import com.gladson.seletivo.model.Album;
+import com.gladson.seletivo.model.enuns.TipoArtistaEnum;
 import com.gladson.seletivo.model.projecoes.AlbumView;
 import com.gladson.seletivo.service.AlbumService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -88,6 +89,19 @@ public class AlbumControllerV1 {
     public ResponseEntity<String> gerarLink(@PathVariable UUID uuid) throws Exception {
         String link = albumService.gerarLinkPreAssinado(uuid);
         return ResponseEntity.ok(link);
+    }
+
+    @GetMapping("/listaralbumportipoartista")
+    public ResponseEntity<Page<AlbumView>> listarAlbunsPorTipoArtista(@RequestParam TipoArtistaEnum tipoArtistaEnum, @Parameter(
+            example = """
+                            {
+                              "page": 0,
+                              "size": 1
+                            }
+                            """
+    )Pageable pageable) {
+        return ResponseEntity.ok(albumService.listarAlbunsPorTipoArtista(tipoArtistaEnum, pageable));
+
     }
 
 }
