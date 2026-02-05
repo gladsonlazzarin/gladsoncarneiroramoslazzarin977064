@@ -1,6 +1,7 @@
 package com.gladson.seletivo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gladson.seletivo.dto.AlbumCriarDTO;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -40,6 +41,10 @@ public class Album implements Serializable {
         this.nomeAlbum = nomeAlbum;
         this.imagens = imagens;
         this.artistas = artistas;
+    }
+
+    public Album(AlbumCriarDTO albumCriarDTO){
+        this.nomeAlbum = albumCriarDTO.nomeAlbum();
     }
 
     public Long getId() {
