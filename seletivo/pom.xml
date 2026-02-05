@@ -107,6 +107,11 @@
 			<version>8.15.0</version> <!-- exemplo de versão recente/stável -->
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>

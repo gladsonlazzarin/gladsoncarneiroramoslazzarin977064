@@ -4,6 +4,7 @@ import com.gladson.seletivo.dto.AlbumCriarDTO;
 import com.gladson.seletivo.model.Album;
 import com.gladson.seletivo.model.enuns.TipoArtistaEnum;
 import com.gladson.seletivo.model.projecoes.AlbumView;
+import com.gladson.seletivo.service.AlbumNotificationService;
 import com.gladson.seletivo.service.AlbumService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -24,11 +25,19 @@ import java.util.UUID;
 public class AlbumControllerV1 {
 
     @Autowired
-    AlbumService albumService;
+    private AlbumService albumService;
+
+    @Autowired
+    private AlbumNotificationService notificationService;
 
     @PostMapping
     public ResponseEntity<Album> criar(@Valid @RequestBody AlbumCriarDTO albumCriarDTO){
-        return ResponseEntity.ok(albumService.criar(albumCriarDTO));
+        Album saved = albumService.criar(albumCriarDTO);
+
+        // Notifica todos os clientes via WebSocket
+        notificationService.notifyNewAlbum(saved.getNomeAlbum());
+
+        return ResponseEntity.ok(saved);
     }
     @GetMapping("/todosalbunsasc")
     public ResponseEntity<Page<AlbumView>> listarAlbunsAsc(@Parameter(
