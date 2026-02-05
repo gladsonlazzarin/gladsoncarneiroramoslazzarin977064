@@ -1,6 +1,7 @@
 package com.gladson.seletivo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gladson.seletivo.dto.ArtistaCriarDTO;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -25,6 +26,16 @@ public class Artista implements Serializable {
     private List<Album> albums;
 
     public Artista() {
+    }
+
+    public Artista(Long id, String nomeArtista, List<Album> albums) {
+        this.id = id;
+        this.nomeArtista = nomeArtista;
+        this.albums = albums;
+    }
+
+    public Artista(ArtistaCriarDTO artistaCriarDTO) {
+        this.nomeArtista = artistaCriarDTO.nomeArtista();
     }
 
     public Long getId() {

@@ -1,5 +1,6 @@
 package com.gladson.seletivo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -22,6 +23,7 @@ public class Album implements Serializable {
     @OneToMany(mappedBy = "album", fetch = FetchType.LAZY)
     private List<Arquivo> imagens;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "tb_artista_album",
