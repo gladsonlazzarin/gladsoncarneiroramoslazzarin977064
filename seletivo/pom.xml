@@ -101,6 +101,12 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.bucket4j</groupId>
+			<artifactId>bucket4j_jdk17-core</artifactId>
+			<version>8.15.0</version> <!-- exemplo de versão recente/stável -->
+		</dependency>
+
 	</dependencies>
 
 	<build>
