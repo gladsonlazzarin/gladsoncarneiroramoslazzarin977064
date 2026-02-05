@@ -27,11 +27,25 @@ public class ArtistaControllerV1 {
         return ResponseEntity.status(HttpStatus.CREATED).body(artistaService.criar(artistaCriarDTO));
     }
     @GetMapping("/todosartistasasc")
-    public ResponseEntity<Page<ArtistaView>> listarArtistarsAsc(Pageable pageable){
+    public ResponseEntity<Page<ArtistaView>> listarArtistarsAsc(@Parameter(
+            example = """
+                            {
+                              "page": 0,
+                              "size": 1
+                            }
+                            """
+    )Pageable pageable) {
         return ResponseEntity.ok(artistaService.todosAsc(pageable));
     }
     @GetMapping("/todosartistasdesc")
-    public ResponseEntity<Page<ArtistaView>> listarArtistarsDesc(Pageable pageable){
+    public ResponseEntity<Page<ArtistaView>> listarArtistarsDesc(@Parameter(
+            example = """
+                            {
+                              "page": 0,
+                              "size": 1
+                            }
+                            """
+    )Pageable pageable) {
         return ResponseEntity.ok(artistaService.todosDesc(pageable));
     }
     @GetMapping("/buscapornome")

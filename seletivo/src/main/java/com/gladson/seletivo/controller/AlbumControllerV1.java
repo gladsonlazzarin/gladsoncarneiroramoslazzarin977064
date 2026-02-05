@@ -25,11 +25,25 @@ public class AlbumControllerV1 {
         return ResponseEntity.ok(albumService.criar(albumCriarDTO));
     }
     @GetMapping("/todosalbunsasc")
-    public ResponseEntity<Page<AlbumView>> listarAlbunsAsc(Pageable pageable){
+    public ResponseEntity<Page<AlbumView>> listarAlbunsAsc(@Parameter(
+            example = """
+                            {
+                              "page": 0,
+                              "size": 1
+                            }
+                            """
+    )Pageable pageable) {
         return ResponseEntity.ok(albumService.todosAsc(pageable));
     }
     @GetMapping("/todosalbunsdesc")
-    public ResponseEntity<Page<AlbumView>> listarAlbunsDesc(Pageable pageable){
+    public ResponseEntity<Page<AlbumView>> listarAlbunsDesc(@Parameter(
+            example = """
+                            {
+                              "page": 0,
+                              "size": 1
+                            }
+                            """
+    )Pageable pageable) {
         return ResponseEntity.ok(albumService.todosDesc(pageable));
     }
     @GetMapping("/buscapornome")
