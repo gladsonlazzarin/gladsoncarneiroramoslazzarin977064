@@ -14,9 +14,10 @@ public class MinioConfig {
     @Bean
     public MinioClient minioClient() {
         return MinioClient.builder()
-                .endpoint("http://localhost:9000")
+                .endpoint("http://minio:9000") // nome do serviço no docker-compose
                 .credentials("minioadmin", "minioadmin")
                 .build();
     }
+
 
 }
