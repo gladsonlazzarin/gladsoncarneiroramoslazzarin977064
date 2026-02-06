@@ -1,20 +1,6 @@
 version: "3.9"
 
 services:
-  app:
-    build:
-      context: ./seletivo
-      dockerfile: Dockerfile
-    env_file:
-      - ./seletivo.env
-    ports:
-      - "8080:8080"
-    depends_on:
-      minio:
-        condition: service_healthy
-      postgres:
-        condition: service_healthy
-
   postgres:
     image: postgres:18
     restart: unless-stopped
@@ -51,6 +37,22 @@ services:
       interval: 10s
       retries: 5
       timeout: 5s
+
+  app:
+    build:
+      context: ./seletivo
+      dockerfile: Dockerfile
+    networks:
+      - seletivo_net
+    env_file:
+      - ./seletivo.env
+    ports:
+      - "8080:8080"
+    depends_on:
+      minio:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
 
 volumes:
   postgres_vol:

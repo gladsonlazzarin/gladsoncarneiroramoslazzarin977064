@@ -45,3 +45,17 @@ git clone https://github.com/gladsonlazzarin/gladsoncarneiroramoslazzarin977064.
 docker-compose up --build
 
 ```
+
+### Swagger
+
+> http://localhost:8080/swagger-ui/index.htm
+
+Usuario administrador
+
+nome: admin
+senha: 123456
+
+Usuario comum
+
+nome: user
+senha: 123456
