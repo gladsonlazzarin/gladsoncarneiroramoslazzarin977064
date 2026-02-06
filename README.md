@@ -40,7 +40,7 @@ MINIO_SECRET_KEY=minioadmin
 ### Com Docker Compose
 
 ```
-git clone https://github.com/seu-usuario/seletivo.git
+git clone https://github.com/gladsonlazzarin/gladsoncarneiroramoslazzarin977064.git
 
 docker-compose up --build
 
