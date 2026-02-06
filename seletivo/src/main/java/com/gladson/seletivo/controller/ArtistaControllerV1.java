@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -24,6 +25,7 @@ public class ArtistaControllerV1 {
     ArtistaService artistaService;
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(description = "Há apenas dois tipos de Artista possíveis, CANTOR ou BANDA")
     public ResponseEntity<Artista> criar(@Valid @RequestBody ArtistaCriarDTO artistaCriarDTO){
         return ResponseEntity.status(HttpStatus.CREATED).body(artistaService.criar(artistaCriarDTO));
@@ -67,6 +69,7 @@ public class ArtistaControllerV1 {
     }
 
     @PutMapping("/atualizarnome/{idArtista}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Artista> atualizarnome(@PathVariable Long idArtista, @Valid @RequestBody ArtistaCriarDTO artistaCriarDTO){
         return ResponseEntity.ok(artistaService.atualizanome(idArtista, artistaCriarDTO));
     }
